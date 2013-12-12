@@ -19,6 +19,9 @@ class LinkedList
   end
 
   def get index
+    if index < 0
+      raise IndexError
+    end
     node = @head
     return @head.payload if index == 0
     for i in 0...index
