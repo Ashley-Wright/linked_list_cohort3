@@ -63,7 +63,7 @@ class LinkedListItemTest < NSS::TestCase
   end
 
   def test_05d_comparator_symbol
-    lli1 = LinkedListItem.new(:foo)
+    lli1 = LinkedListItem.new(:apple)
     lli2 = LinkedListItem.new("bar")
     assert lli1 > lli2
     assert lli2 < lli1
@@ -74,5 +74,12 @@ class LinkedListItemTest < NSS::TestCase
     lli2 = LinkedListItem.new("bar")
     assert lli1 < lli2
     assert lli2 > lli1
+  end
+
+  def test_05f_comparator_symbol_integer
+    lli1 = LinkedListItem.new(:apple)
+    lli2 = LinkedListItem.new(1)
+    assert lli1 > lli2
+    assert lli2 < lli1
   end
 end

@@ -30,7 +30,15 @@ class LinkedListItem
   #---- Comparables----#
 
   def <=> (other)
-    self.payload.to_s <=> other.payload.to_s
+    return 1 if self.payload.is_a?(Symbol) && !other.payload.is_a?(Symbol)
+    return -1 if !self.payload.is_a?(Symbol) && other.payload.is_a?(Symbol)
+
+    return -1 if self.payload.is_a?(Fixnum) && !other.payload.is_a?(Fixnum)
+    return 1 if !self.payload.is_a?(Fixnum) && other.payload.is_a?(Fixnum)
+
+    if self.payload.class == other.payload.class
+      self.payload <=> other.payload
+    end
   end
 
   def === (other)
