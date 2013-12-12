@@ -1,7 +1,7 @@
 
 class LinkedList
 
-  def initialize
+  def initialize *payload
     @head = nil
   end
 
@@ -19,15 +19,39 @@ class LinkedList
   end
 
   def get index
-    if index < 0
-      raise IndexError
-    end
+    raise IndexError if index < 0
     node = @head
     return @head.payload if index == 0
     for i in 0...index
+      raise IndexError if node.nil?
       node = node.next_list_item
     end
     return node.payload
   end
+
+  def size
+    node = @head
+    count = 0
+    until node == nil do
+      node = node.next_list_item
+      count += 1
+    end
+    return count
+  end
+
+  def last
+    return @head if @head == nil
+
+    node = @head
+    until node.next_list_item == nil do
+      node = node.next_list_item
+    end
+    return node.payload
+  end
+
+  # def to_s
+
+  # end
+
 
 end
