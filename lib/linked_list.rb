@@ -3,6 +3,9 @@ class LinkedList
 
   def initialize *payload
     @head = nil
+    if payload.length != 0
+      payload.each {|item| self.add_item(item)}
+    end
   end
 
   def add_item payload
