@@ -43,15 +43,28 @@ class LinkedList
     return @head if @head == nil
 
     node = @head
-    until node.next_list_item == nil do
+    until node.last? do
       node = node.next_list_item
     end
     return node.payload
   end
 
-  # def to_s
+  def to_s
+    return "| |" if @head == nil
 
-  # end
+    node = @head
+    string = ''
 
+    while node do
+      if node.last?
+        string += node.payload + ' '
+      else
+        string += node.payload + ', '
+      end
+      node = node.next_list_item
+    end
+
+    return "| #{string}|"
+  end
 
 end
