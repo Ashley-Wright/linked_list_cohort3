@@ -116,4 +116,18 @@ class LinkedList
     return count
   end
 
+  def sorted?
+    return true if @head == nil
+
+    node = @head
+    until node.last? do
+      if node <= node.next_list_item
+        node = node.next_list_item
+      else
+        return false
+      end
+    end
+    return true
+  end
+
 end
