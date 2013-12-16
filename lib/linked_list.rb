@@ -121,11 +121,8 @@ class LinkedList
 
     node = @head
     until node.last? do
-      if node <= node.next_list_item
-        node = node.next_list_item
-      else
-        return false
-      end
+      return false if node > node.next_list_item
+      node = node.next_list_item
     end
     return true
   end
