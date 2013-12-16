@@ -85,4 +85,18 @@ class LinkedList
     return @node.payload
   end
 
+  def remove index
+    if index == 0
+      @head = @head.next_list_item
+      return
+    end
+    if self.find_node(index) == nil
+      raise IndexError
+    else
+      prev_node = self.find_node(index - 1)
+      next_node = self.find_node(index + 1)
+      prev_node.next_list_item = next_node
+    end
+  end
+
 end
