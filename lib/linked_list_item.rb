@@ -11,6 +11,10 @@ class LinkedListItem
     @item
   end
 
+  def payload= item
+    @item = item
+  end
+
   #---- Next List Item ----#
 
   def next_list_item= next_item

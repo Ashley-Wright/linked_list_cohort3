@@ -21,15 +21,20 @@ class LinkedList
     end
   end
 
-  def get index
+  def find_node index
     raise IndexError if index < 0
-    node = @head
+    @node = @head
     return @head.payload if index == 0
     for i in 0...index
-      raise IndexError if node.nil?
-      node = node.next_list_item
+      raise IndexError if @node.nil?
+      @node = @node.next_list_item
     end
-    return node.payload
+    return @node
+  end
+
+  def get index
+    self.find_node(index)
+    return @node.payload
   end
 
   def size
@@ -68,6 +73,16 @@ class LinkedList
     end
 
     return "| #{string}|"
+  end
+
+  def [] index
+    self.get(index)
+  end
+
+  def []= index, payload
+    self.find_node(index)
+    @node.payload = payload
+    return @node.payload
   end
 
 end
