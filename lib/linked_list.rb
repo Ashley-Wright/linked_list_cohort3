@@ -99,4 +99,21 @@ class LinkedList
     end
   end
 
+  def indexOf payload
+    return nil if @head == nil
+
+    node = @head
+    count = 0
+    until node.payload == payload do
+      if node.next_list_item == nil
+        return nil
+      end
+
+      node = node.next_list_item
+      count += 1
+    end
+
+    return count
+  end
+
 end
