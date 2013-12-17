@@ -66,13 +66,14 @@ class LinkedList
     while node do
       if node.last?
         string += node.payload + ' '
+        return "| #{string}|"
       else
         string += node.payload + ', '
+        node = node.next_list_item
       end
-      node = node.next_list_item
     end
 
-    return "| #{string}|"
+
   end
 
   def [] index
@@ -125,6 +126,23 @@ class LinkedList
       node = node.next_list_item
     end
     return true
+  end
+
+  def sort
+    return self if self.size < 2
+
+    node = @head
+
+    if node > node.next_list_item
+      a = node
+      b = node.next_list_item
+
+      @head = b
+      b.next_list_item = a
+      a.next_list_item = nil
+    end
+
+    return self
   end
 
 end
