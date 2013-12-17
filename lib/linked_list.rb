@@ -65,15 +65,13 @@ class LinkedList
 
     while node do
       if node.last?
-        string += node.payload + ' '
+        string += node.payload.to_s + ' '
         return "| #{string}|"
       else
-        string += node.payload + ', '
+        string += node.payload.to_s + ', '
         node = node.next_list_item
       end
     end
-
-
   end
 
   def [] index
@@ -131,17 +129,46 @@ class LinkedList
   def sort
     return self if self.size < 2
 
-    node = @head
+    until self.sorted?
+      node = @head
+      index = 0
+      until node.last? do
+        if node > node.next_list_item
+          a = node
+          b = node.next_list_item
 
-    if node > node.next_list_item
-      a = node
-      b = node.next_list_item
+          if a == @head && b.last?
+            @head = b
+            b.next_list_item = a
+            a.next_list_item = nil
 
-      @head = b
-      b.next_list_item = a
-      a.next_list_item = nil
+          elsif a == @head && !b.last?
+            self.find_node(index + 2)
+            pick_up = @node
+            @head = b
+            a.next_list_item = pick_up
+
+          elsif a != @head && b.last?
+            self.find_node(index - 1)
+            left_off = @node
+            left_off.next_list_item = b
+            a.next_list_item = nil
+
+          elsif a != @head && !b.last?
+            self.find_node(index - 1)
+            left_off = @node
+            self.find_node(index + 2)
+            pick_up = @node
+            left_off.next_list_item = b
+            a.next_list_item = pick_up
+          end
+          b.next_list_item = a
+          node = b
+        end
+        node = node.next_list_item
+        index += 1
+      end
     end
-
     return self
   end
 
